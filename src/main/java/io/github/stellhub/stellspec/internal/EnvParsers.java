@@ -4,9 +4,7 @@ import java.time.Duration;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * 环境变量解析工具。
- */
+/** 环境变量解析工具。 */
 public final class EnvParsers {
 
     private EnvParsers() {}

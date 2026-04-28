@@ -3,9 +3,7 @@ package io.github.stellhub.stellspec.exception;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * SDK 内部错误枚举。
- */
+/** SDK 内部错误枚举。 */
 @Getter
 @RequiredArgsConstructor
 public enum StellspecSdkError {

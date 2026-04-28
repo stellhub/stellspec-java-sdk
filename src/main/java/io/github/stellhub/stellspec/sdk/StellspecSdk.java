@@ -19,9 +19,7 @@ import io.opentelemetry.sdk.logs.export.BatchLogRecordProcessor;
 import io.opentelemetry.sdk.logs.export.LogRecordExporter;
 import io.opentelemetry.sdk.resources.Resource;
 
-/**
- * SDK 入口。
- */
+/** SDK 入口。 */
 public final class StellspecSdk {
 
     private StellspecSdk() {}
@@ -62,17 +60,20 @@ public final class StellspecSdk {
         return new StellspecRuntime(config, sdk, loggerProvider);
     }
 
-    private static LogRecordExporter createExporter(StellspecConfig config) throws StellspecException {
+    private static LogRecordExporter createExporter(StellspecConfig config)
+            throws StellspecException {
         if (config.isDevelopment() || !"otlp".equalsIgnoreCase(config.getOutput())) {
             return new ConsoleLogRecordExporter(config.getFormat());
         }
-        LogRecordExporter delegate = switch (config.getProtocol().toLowerCase()) {
-            case "http", "http/protobuf" -> buildHttpExporter(config);
-            case "grpc" -> buildGrpcExporter(config);
-            default -> throw new StellspecException(
-                    StellspecSdkError.INVALID_CONFIGURATION,
-                    "unsupported protocol: " + config.getProtocol());
-        };
+        LogRecordExporter delegate =
+                switch (config.getProtocol().toLowerCase()) {
+                    case "http", "http/protobuf" -> buildHttpExporter(config);
+                    case "grpc" -> buildGrpcExporter(config);
+                    default ->
+                            throw new StellspecException(
+                                    StellspecSdkError.INVALID_CONFIGURATION,
+                                    "unsupported protocol: " + config.getProtocol());
+                };
         LogRecordExporter exporter = new RetryingLogRecordExporter(delegate, config.getRetry());
         return new FallbackLogRecordExporter(exporter, config.getFallbackFilePath());
     }

@@ -1,8 +1,6 @@
 package io.github.stellhub.stellspec.bridge;
 
-/**
- * 通用日志追加器，供自研框架适配调用。
- */
+/** 通用日志追加器，供自研框架适配调用。 */
 @FunctionalInterface
 public interface StellspecAppender {
 

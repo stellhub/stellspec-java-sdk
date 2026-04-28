@@ -5,9 +5,7 @@ import java.util.logging.Level;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * SDK 内部严重级别。
- */
+/** SDK 内部严重级别。 */
 @Getter
 @RequiredArgsConstructor
 public enum StellspecSeverity {

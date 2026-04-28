@@ -14,9 +14,7 @@ import java.io.StringWriter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * 基于 OTel Logger 的日志追加器。
- */
+/** 基于 OTel Logger 的日志追加器。 */
 public class OtelLogAppender implements StellspecAppender {
 
     private final Logger logger;
@@ -34,7 +32,8 @@ public class OtelLogAppender implements StellspecAppender {
         MessageTruncator.Result truncated = MessageTruncator.truncate(event.getMessage());
         attributes.putAll(truncated.getAttributes());
         LogRecordBuilder builder =
-                logger.logRecordBuilder()
+                logger
+                        .logRecordBuilder()
                         .setSeverity(event.getSeverity().getOtelSeverity())
                         .setSeverityText(event.getSeverity().name())
                         .setBody(truncated.getMessage())
@@ -67,8 +66,7 @@ public class OtelLogAppender implements StellspecAppender {
             putIfNotBlank(attributes, "stellar.error.reason", errorDescriptor.getReason());
             if (errorDescriptor.getRetryable() != null) {
                 builder.setAttribute(
-                        AttributeKey.booleanKey("stellar.error.retryable"),
-                        errorDescriptor.getRetryable());
+                        AttributeKey.booleanKey("stellar.error.retryable"), errorDescriptor.getRetryable());
             }
         }
         if (config.isEnableCaller()) {
@@ -86,12 +84,10 @@ public class OtelLogAppender implements StellspecAppender {
         return StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE)
                 .walk(
                         frames ->
-                                frames.map(StackWalker.StackFrame::toStackTraceElement)
+                                frames
+                                        .map(StackWalker.StackFrame::toStackTraceElement)
                                         .filter(
-                                                frame ->
-                                                        !frame.getClassName()
-                                                                .startsWith(
-                                                                        "io.github.stellhub.stellspec"))
+                                                frame -> !frame.getClassName().startsWith("io.github.stellhub.stellspec"))
                                         .findFirst()
                                         .orElse(null));
     }

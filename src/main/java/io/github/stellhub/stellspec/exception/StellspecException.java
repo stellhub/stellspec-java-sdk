@@ -2,9 +2,7 @@ package io.github.stellhub.stellspec.exception;
 
 import lombok.Getter;
 
-/**
- * SDK 对外异常。
- */
+/** SDK 对外异常。 */
 @Getter
 public class StellspecException extends Exception {
 

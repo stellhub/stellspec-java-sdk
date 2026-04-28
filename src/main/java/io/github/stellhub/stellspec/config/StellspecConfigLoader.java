@@ -3,9 +3,7 @@ package io.github.stellhub.stellspec.config;
 import io.github.stellhub.stellspec.internal.EnvParsers;
 import java.util.Map;
 
-/**
- * 从环境变量装配配置。
- */
+/** 从环境变量装配配置。 */
 public final class StellspecConfigLoader {
 
     private StellspecConfigLoader() {}
@@ -36,22 +34,13 @@ public final class StellspecConfigLoader {
                         "dev");
         boolean development =
                 EnvParsers.parseBoolean(
-                        env.get("stellspec_DEVELOPMENT"),
-                        isDevelopmentEnvironment(environment));
-        String output =
-                firstNonBlank(
-                        env.get("stellspec_OUTPUT"),
-                        development ? "stdout" : "otlp");
-        String format =
-                firstNonBlank(
-                        env.get("stellspec_FORMAT"),
-                        development ? "console" : "json");
+                        env.get("stellspec_DEVELOPMENT"), isDevelopmentEnvironment(environment));
+        String output = firstNonBlank(env.get("stellspec_OUTPUT"), development ? "stdout" : "otlp");
+        String format = firstNonBlank(env.get("stellspec_FORMAT"), development ? "console" : "json");
 
         RetryConfig retryConfig =
                 RetryConfig.builder()
-                        .enabled(
-                                EnvParsers.parseBoolean(
-                                        env.get("stellspec_RETRY_ENABLED"), true))
+                        .enabled(EnvParsers.parseBoolean(env.get("stellspec_RETRY_ENABLED"), true))
                         .initialInterval(
                                 EnvParsers.parseDuration(
                                         env.get("stellspec_RETRY_INITIAL_INTERVAL"),
@@ -86,61 +75,34 @@ public final class StellspecConfigLoader {
                                         "unknown"))
                         .serviceInstanceId(
                                 firstNonBlank(
-                                        env.get("stellspec_SERVICE_INSTANCE_ID"),
-                                        env.get("STELLAR_APP_INSTANCE_ID")))
+                                        env.get("stellspec_SERVICE_INSTANCE_ID"), env.get("STELLAR_APP_INSTANCE_ID")))
                         .environment(environment)
-                        .cluster(
-                                firstNonBlank(
-                                        env.get("stellspec_CLUSTER"), env.get("STELLAR_CLUSTER")))
-                        .region(
-                                firstNonBlank(
-                                        env.get("stellspec_REGION"), env.get("STELLAR_REGION")))
-                        .zone(
-                                firstNonBlank(
-                                        env.get("stellspec_ZONE"), env.get("STELLAR_ZONE")))
+                        .cluster(firstNonBlank(env.get("stellspec_CLUSTER"), env.get("STELLAR_CLUSTER")))
+                        .region(firstNonBlank(env.get("stellspec_REGION"), env.get("STELLAR_REGION")))
+                        .zone(firstNonBlank(env.get("stellspec_ZONE"), env.get("STELLAR_ZONE")))
                         .idc(firstNonBlank(env.get("stellspec_IDC"), env.get("STELLAR_IDC")))
-                        .hostName(
-                                firstNonBlank(
-                                        env.get("stellspec_HOST_NAME"),
-                                        env.get("STELLAR_HOST_NAME")))
-                        .hostIp(
-                                firstNonBlank(
-                                        env.get("stellspec_HOST_IP"), env.get("STELLAR_HOST_IP")))
-                        .nodeName(
-                                firstNonBlank(
-                                        env.get("stellspec_NODE_NAME"),
-                                        env.get("STELLAR_NODE_NAME")))
+                        .hostName(firstNonBlank(env.get("stellspec_HOST_NAME"), env.get("STELLAR_HOST_NAME")))
+                        .hostIp(firstNonBlank(env.get("stellspec_HOST_IP"), env.get("STELLAR_HOST_IP")))
+                        .nodeName(firstNonBlank(env.get("stellspec_NODE_NAME"), env.get("STELLAR_NODE_NAME")))
                         .k8sNamespace(
-                                firstNonBlank(
-                                        env.get("stellspec_K8S_NAMESPACE"),
-                                        env.get("STELLAR_K8S_NAMESPACE")))
-                        .podName(
-                                firstNonBlank(
-                                        env.get("stellspec_POD_NAME"), env.get("STELLAR_POD_NAME")))
+                                firstNonBlank(env.get("stellspec_K8S_NAMESPACE"), env.get("STELLAR_K8S_NAMESPACE")))
+                        .podName(firstNonBlank(env.get("stellspec_POD_NAME"), env.get("STELLAR_POD_NAME")))
                         .podUid(firstNonBlank(env.get("stellspec_POD_UID")))
-                        .podIp(
-                                firstNonBlank(
-                                        env.get("stellspec_POD_IP"), env.get("STELLAR_POD_IP")))
+                        .podIp(firstNonBlank(env.get("stellspec_POD_IP"), env.get("STELLAR_POD_IP")))
                         .containerName(
                                 firstNonBlank(
-                                        env.get("stellspec_CONTAINER_NAME"),
-                                        env.get("STELLAR_CONTAINER_NAME")))
+                                        env.get("stellspec_CONTAINER_NAME"), env.get("STELLAR_CONTAINER_NAME")))
                         .endpoint(
                                 firstNonBlank(
-                                        env.get("stellspec_ENDPOINT"),
-                                        development ? null : "http://localhost:4317"))
+                                        env.get("stellspec_ENDPOINT"), development ? null : "http://localhost:4317"))
                         .insecure(EnvParsers.parseBoolean(env.get("stellspec_INSECURE"), true))
                         .protocol(firstNonBlank(env.get("stellspec_PROTOCOL"), "grpc"))
                         .format(format)
                         .output(output)
                         .level(firstNonBlank(env.get("stellspec_LEVEL"), "info"))
                         .development(development)
-                        .enableCaller(
-                                EnvParsers.parseBoolean(
-                                        env.get("stellspec_ENABLE_CALLER"), true))
-                        .enableStacktrace(
-                                EnvParsers.parseBoolean(
-                                        env.get("stellspec_ENABLE_STACKTRACE"), true))
+                        .enableCaller(EnvParsers.parseBoolean(env.get("stellspec_ENABLE_CALLER"), true))
+                        .enableStacktrace(EnvParsers.parseBoolean(env.get("stellspec_ENABLE_STACKTRACE"), true))
                         .batchTimeout(
                                 EnvParsers.parseDuration(
                                         env.get("stellspec_BATCH_TIMEOUT"),

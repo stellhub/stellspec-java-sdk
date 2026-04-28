@@ -5,9 +5,7 @@ import io.opentelemetry.api.logs.LogRecordBuilder;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 属性写入工具。
- */
+/** 属性写入工具。 */
 public final class AttributeUtil {
 
     private AttributeUtil() {}
@@ -41,16 +39,13 @@ public final class AttributeUtil {
                     } else if (value instanceof Double doubleValue) {
                         builder.setAttribute(AttributeKey.doubleKey(key), doubleValue);
                     } else if (value instanceof List<?> listValue && isStringList(listValue)) {
-                        builder.setAttribute(
-                                AttributeKey.stringArrayKey(key), (List<String>) listValue);
+                        builder.setAttribute(AttributeKey.stringArrayKey(key), (List<String>) listValue);
                     } else if (value instanceof List<?> listValue && isLongList(listValue)) {
                         builder.setAttribute(AttributeKey.longArrayKey(key), (List<Long>) listValue);
                     } else if (value instanceof List<?> listValue && isDoubleList(listValue)) {
-                        builder.setAttribute(
-                                AttributeKey.doubleArrayKey(key), (List<Double>) listValue);
+                        builder.setAttribute(AttributeKey.doubleArrayKey(key), (List<Double>) listValue);
                     } else if (value instanceof List<?> listValue && isBooleanList(listValue)) {
-                        builder.setAttribute(
-                                AttributeKey.booleanArrayKey(key), (List<Boolean>) listValue);
+                        builder.setAttribute(AttributeKey.booleanArrayKey(key), (List<Boolean>) listValue);
                     } else {
                         builder.setAttribute(AttributeKey.stringKey(key), String.valueOf(value));
                     }
@@ -62,11 +57,13 @@ public final class AttributeUtil {
     }
 
     private static boolean isLongList(List<?> value) {
-        return value.stream().allMatch(item -> item == null || item instanceof Long || item instanceof Integer);
+        return value.stream()
+                .allMatch(item -> item == null || item instanceof Long || item instanceof Integer);
     }
 
     private static boolean isDoubleList(List<?> value) {
-        return value.stream().allMatch(item -> item == null || item instanceof Double || item instanceof Float);
+        return value.stream()
+                .allMatch(item -> item == null || item instanceof Double || item instanceof Float);
     }
 
     private static boolean isBooleanList(List<?> value) {

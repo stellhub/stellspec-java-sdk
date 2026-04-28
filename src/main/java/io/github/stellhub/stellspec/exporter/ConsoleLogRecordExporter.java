@@ -8,9 +8,7 @@ import java.io.PrintStream;
 import java.time.Instant;
 import java.util.Collection;
 
-/**
- * 开发环境控制台导出器。
- */
+/** 开发环境控制台导出器。 */
 public class ConsoleLogRecordExporter implements LogRecordExporter {
 
     private final String format;
@@ -23,7 +21,8 @@ public class ConsoleLogRecordExporter implements LogRecordExporter {
     public CompletableResultCode export(Collection<LogRecordData> logs) {
         logs.forEach(
                 log -> {
-                    PrintStream stream = log.getSeverity().getSeverityNumber() >= 17 ? System.err : System.out;
+                    PrintStream stream =
+                            log.getSeverity().getSeverityNumber() >= 17 ? System.err : System.out;
                     if ("json".equalsIgnoreCase(format)) {
                         stream.println(LogRecordJsonEncoder.encode(log));
                     } else {

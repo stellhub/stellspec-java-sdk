@@ -13,9 +13,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * OTLP 导出失败后的本地兜底导出器。
- */
+/** OTLP 导出失败后的本地兜底导出器。 */
 public class FallbackLogRecordExporter implements LogRecordExporter {
 
     private final LogRecordExporter delegate;

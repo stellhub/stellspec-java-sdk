@@ -10,9 +10,7 @@ import java.util.List;
 import org.slf4j.ILoggerFactory;
 import org.slf4j.LoggerFactory;
 
-/**
- * Logback 桥接安装器。
- */
+/** Logback 桥接安装器。 */
 public final class StellspecLogbackBridgeInstaller {
 
     private static final String APPENDER_NAME_PREFIX = "stellspec-logback-";

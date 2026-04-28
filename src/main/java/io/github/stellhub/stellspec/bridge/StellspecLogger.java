@@ -4,9 +4,7 @@ import io.github.stellhub.stellspec.model.StellspecSeverity;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 
-/**
- * 提供给业务和自研框架的轻量日志门面。
- */
+/** 提供给业务和自研框架的轻量日志门面。 */
 @RequiredArgsConstructor
 public class StellspecLogger {
 

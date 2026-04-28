@@ -7,9 +7,7 @@ import java.time.Instant;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
-/**
- * JUL 适配器，可直接挂载到自研框架或标准 JUL。
- */
+/** JUL 适配器，可直接挂载到自研框架或标准 JUL。 */
 public class StellspecJulHandler extends Handler {
 
     private final StellspecAppender appender;

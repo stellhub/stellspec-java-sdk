@@ -9,18 +9,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Singular;
 
-/**
- * 框架无关的结构化日志事件。
- */
+/** 框架无关的结构化日志事件。 */
 @Getter
 @Builder(toBuilder = true)
 public class StellspecLogEvent {
 
-    @Builder.Default
-    private final Instant timestamp = Instant.now();
+    @Builder.Default private final Instant timestamp = Instant.now();
 
-    @Builder.Default
-    private final Context context = Context.current();
+    @Builder.Default private final Context context = Context.current();
 
     private final StellspecSeverity severity;
 

@@ -7,9 +7,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-/**
- * 超长日志正文截断工具。
- */
+/** 超长日志正文截断工具。 */
 public final class MessageTruncator {
 
     public static final int MAX_BODY_BYTES = 32 * 1024;

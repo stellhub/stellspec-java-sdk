@@ -11,9 +11,7 @@ import io.opentelemetry.sdk.logs.SdkLoggerProvider;
 import java.util.concurrent.TimeUnit;
 import lombok.Getter;
 
-/**
- * SDK 运行时，负责 Provider 生命周期。
- */
+/** SDK 运行时，负责 Provider 生命周期。 */
 @Getter
 public class StellspecRuntime {
 
@@ -69,8 +67,7 @@ public class StellspecRuntime {
      */
     public void shutdown() throws StellspecException {
         if (!openTelemetrySdk.shutdown().join(10, TimeUnit.SECONDS).isSuccess()) {
-            throw new StellspecException(
-                    StellspecSdkError.RUNTIME_SHUTDOWN_FAILED, "shutdown timeout");
+            throw new StellspecException(StellspecSdkError.RUNTIME_SHUTDOWN_FAILED, "shutdown timeout");
         }
     }
 }

@@ -9,9 +9,7 @@ import java.time.Instant;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
-/**
- * 简单指数退避重试导出器。
- */
+/** 简单指数退避重试导出器。 */
 public class RetryingLogRecordExporter implements LogRecordExporter {
 
     private final LogRecordExporter delegate;

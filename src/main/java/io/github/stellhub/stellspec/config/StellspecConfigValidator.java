@@ -3,9 +3,7 @@ package io.github.stellhub.stellspec.config;
 import io.github.stellhub.stellspec.exception.StellspecException;
 import io.github.stellhub.stellspec.exception.StellspecSdkError;
 
-/**
- * 配置校验器。
- */
+/** 配置校验器。 */
 public final class StellspecConfigValidator {
 
     private StellspecConfigValidator() {}
@@ -38,8 +36,7 @@ public final class StellspecConfigValidator {
         }
         if (config.getMaxBatchSize() > config.getMaxQueueSize()) {
             throw new StellspecException(
-                    StellspecSdkError.INVALID_CONFIGURATION,
-                    "maxBatchSize must not exceed maxQueueSize");
+                    StellspecSdkError.INVALID_CONFIGURATION, "maxBatchSize must not exceed maxQueueSize");
         }
     }
 

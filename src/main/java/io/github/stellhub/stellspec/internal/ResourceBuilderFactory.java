@@ -5,9 +5,7 @@ import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.api.common.AttributesBuilder;
 import io.opentelemetry.sdk.resources.Resource;
 
-/**
- * OTel Resource 构建工厂。
- */
+/** OTel Resource 构建工厂。 */
 public final class ResourceBuilderFactory {
 
     private ResourceBuilderFactory() {}

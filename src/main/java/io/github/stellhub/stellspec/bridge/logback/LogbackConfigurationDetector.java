@@ -3,15 +3,11 @@ package io.github.stellhub.stellspec.bridge.logback;
 import java.net.URL;
 import java.util.Properties;
 
-/**
- * Logback 本地配置探测器。
- */
+/** Logback 本地配置探测器。 */
 public final class LogbackConfigurationDetector {
 
     private static final String[] CANDIDATES = {
-        "logback.xml",
-        "logback-spring.xml",
-        "logback-test.xml"
+        "logback.xml", "logback-spring.xml", "logback-test.xml"
     };
 
     private LogbackConfigurationDetector() {}

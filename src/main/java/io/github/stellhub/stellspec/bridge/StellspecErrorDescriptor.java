@@ -3,9 +3,7 @@ package io.github.stellhub.stellspec.bridge;
 import lombok.Builder;
 import lombok.Getter;
 
-/**
- * 结构化错误描述，遵循错误码规范。
- */
+/** 结构化错误描述，遵循错误码规范。 */
 @Getter
 @Builder(toBuilder = true)
 public class StellspecErrorDescriptor {

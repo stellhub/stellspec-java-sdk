@@ -12,9 +12,7 @@ import io.github.stellhub.stellspec.model.StellspecSeverity;
 import java.time.Instant;
 import java.util.Map;
 
-/**
- * Logback 到 stellspec 的桥接 Appender。
- */
+/** Logback 到 stellspec 的桥接 Appender。 */
 public class StellspecLogbackAppender extends AppenderBase<ILoggingEvent> {
 
     private final StellspecAppender appender;

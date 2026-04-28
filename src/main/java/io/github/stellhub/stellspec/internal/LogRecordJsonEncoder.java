@@ -8,9 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * 将 LogRecordData 编码为 JSON 行文本。
- */
+/** 将 LogRecordData 编码为 JSON 行文本。 */
 public final class LogRecordJsonEncoder {
 
     private LogRecordJsonEncoder() {}
@@ -23,14 +21,18 @@ public final class LogRecordJsonEncoder {
      */
     public static String encode(LogRecordData logRecordData) {
         Map<String, Object> root = new LinkedHashMap<>();
-        root.put("timestamp", Instant.ofEpochSecond(0, logRecordData.getTimestampEpochNanos()).toString());
-        root.put("observed_timestamp", Instant.ofEpochSecond(0, logRecordData.getObservedTimestampEpochNanos()).toString());
+        root.put(
+                "timestamp", Instant.ofEpochSecond(0, logRecordData.getTimestampEpochNanos()).toString());
+        root.put(
+                "observed_timestamp",
+                Instant.ofEpochSecond(0, logRecordData.getObservedTimestampEpochNanos()).toString());
         root.put("severity_text", logRecordData.getSeverityText());
         root.put("severity_number", logRecordData.getSeverity().getSeverityNumber());
         root.put("body", scalar(logRecordData.getBodyValue()));
         root.put("trace_id", logRecordData.getSpanContext().getTraceId());
         root.put("span_id", logRecordData.getSpanContext().getSpanId());
-        root.put("resource", normalizeAttributeMap(logRecordData.getResource().getAttributes().asMap()));
+        root.put(
+                "resource", normalizeAttributeMap(logRecordData.getResource().getAttributes().asMap()));
         root.put("attributes", normalizeAttributeMap(logRecordData.getAttributes().asMap()));
         return toJson(root);
     }
@@ -64,7 +66,9 @@ public final class LogRecordJsonEncoder {
         }
         if (value instanceof Map<?, ?> mapValue) {
             return mapValue.entrySet().stream()
-                    .map(entry -> "\"" + escape(String.valueOf(entry.getKey())) + "\":" + toJson(entry.getValue()))
+                    .map(
+                            entry ->
+                                    "\"" + escape(String.valueOf(entry.getKey())) + "\":" + toJson(entry.getValue()))
                     .collect(Collectors.joining(",", "{", "}"));
         }
         if (value instanceof Iterable<?> iterable) {
